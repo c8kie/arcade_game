@@ -9,7 +9,7 @@ class Enemy {
         this.sprite = 'images/robot.png';
         this.x = -1000 + Math.floor(Math.random() * 1000);
         this.y = 85 * Math.ceil(Math.random() * 3) - 35;
-        this.speed = 100 + Math.floor(Math.random() * 100);
+        this.speed = 150 + Math.floor(Math.random() * 100);
     }
 
     // Update the enemy's position, required method for game
@@ -28,7 +28,7 @@ class Enemy {
         if (this.x > 470) {
             this.x = -800 + Math.floor(Math.random() * 700);
             this.y = 85 * Math.ceil(Math.random() * 3) - 35;
-            this.speed = 100 + Math.floor(Math.random() * 100);
+            this.speed = 150 + Math.floor(Math.random() * 100);
         }
     }
 
