@@ -1,0 +1,13 @@
+body {
+    text-align: center;
+}
+
+#progress_text,
+#goal_text {
+	font-size: 30px;
+	padding-top: 30px;
+}
+
+#progress_text {
+	display: none;
+}
