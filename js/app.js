@@ -7,6 +7,8 @@ class Enemy {
         // The image/sprite for our enemies, this uses
         // a helper we've provided to easily load images
         this.sprite = 'images/robot.png';
+        // We use random() to set different starting position
+        // and different speed
         this.x = -1000 + Math.floor(Math.random() * 1000);
         this.y = 85 * Math.ceil(Math.random() * 3) - 35;
         this.speed = 150 + Math.floor(Math.random() * 100);
@@ -19,12 +21,13 @@ class Enemy {
         // which will ensure the game runs at the same speed for
         // all computers.
         this.x += dt * this.speed;
-        //check collision
+        // Collision check
         if (this.y == (player.y - 50) 
         && (this.x >= (player.x - 70) && this.x <= (player.x + 40))
         ) {
             player.y = 355;
         }
+        // Check for screen bounds
         if (this.x > 470) {
             this.x = -800 + Math.floor(Math.random() * 700);
             this.y = 85 * Math.ceil(Math.random() * 3) - 35;
@@ -49,7 +52,8 @@ class Player {
         this.deltaX = 0;
         this.deltaY = 0;
     }
-
+    // This controls players' movement
+    // but is not really changing his position
     handleInput(keyCode){
         switch(keyCode) {
             case 'left':
@@ -70,14 +74,20 @@ class Player {
     }
 
     update(dt) {
+        // This actually changes players' position
         this.x += 100 * this.deltaX;
+        // Checking bounds
         this.x = (this.x > 400 ? 400 : this.x);
         this.x = (this.x < 0 ? 0 : this.x);
         this.y += 85 * this.deltaY;
         this.y = (this.y > 440 ? 440 : this.y);
+        //Win condition
         if (this.y < 100) {
             this.y = 355;
+
+            // Increasing win counter
             winCount++;
+            // Hiding goal text and showing progress text
             $('#goal_text').css('display', 'none');
             $('#progress_text').css('display', 'block');
             $('#win_num').text(winCount);
@@ -86,7 +96,7 @@ class Player {
         this.deltaY = 0;
     }
 
-    // Draw the enemy on the screen, required method for game
+    // Draw the player on the screen, required method for game
     render() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     }
